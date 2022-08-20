@@ -11,6 +11,7 @@ const UserList = () => {
     const [rows, setRows] = useState(0);        // total row
     const [keyword, setKeyword] = useState(''); // keyword pencarian
     const [query, setQuery] = useState('');     // keyword pencarian
+    const [msg, setMsg] = useState('');         
 
 
     // memanggil tampungan data user agar tidak re-render pada perubahan page & keyword
@@ -32,6 +33,12 @@ const UserList = () => {
 
     const changePage = ({selected}) => {
         setPage(selected);
+        
+        if(selected === 9){
+            setMsg("Jika tidak menemukan data yang anda cari, silahkan cari data dengan kata kunci spesifik!")
+        }else{
+            setMsg("");
+        }
     }
 
     const searchData = (e) => {
@@ -85,7 +92,7 @@ const UserList = () => {
                     </tbody>
                 </table>
                 <p>Total Row : {rows} Page: {rows? page + 1 : 0} of {pages}</p>
-                
+                <p className='has-text-centered has-text-danger mb-2'>{msg}</p>
                 <nav 
                     className="pagination is-centered"
                     role="navigation" 
@@ -95,7 +102,7 @@ const UserList = () => {
                     <ReactPaginate 
                         previousLabel={"< Prev"}
                         nextLabel={"Next >"}
-                        pageCount={pages}
+                        pageCount={Math.min(10, pages)}
                         onPageChange={changePage}
                         containerClassName={"pagination-list"}
                         pageLinkClassName={"pagination-link"}

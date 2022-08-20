@@ -84,6 +84,12 @@ const UserList = () => {
                         nextLabel={"Next >"}
                         pageCount={pages}
                         onPageChange={changePage}
+                        containerClassName={"pagination-list"}
+                        pageLinkClassName={"pagination-link"}
+                        previousLinkClassName={"pagination-previous"}
+                        nextLinkClassName={"pagination-next"}
+                        activeLinkClassName={"pagination-link is-current"}
+                        disabledLinkClassName={"pagination-link is-disabled"}
                     />
                 </nav>
                 

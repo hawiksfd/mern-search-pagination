@@ -10,6 +10,8 @@ const UserList = () => {
     const [pages, setPages] = useState(0);      // total page
     const [rows, setRows] = useState(0);        // total row
     const [keyword, setKeyword] = useState(''); // keyword pencarian
+    const [query, setQuery] = useState('');     // keyword pencarian
+
 
     // memanggil tampungan data user agar tidak re-render pada perubahan page & keyword
     useEffect(() => {
@@ -32,17 +34,27 @@ const UserList = () => {
         setPage(selected);
     }
 
+    const searchData = (e) => {
+        e.preventDefault();
+        setPage(0);
+        setKeyword(query);
+
+    }
+
     return (
         <div className="container mt-5">
             <div className='columns'>
                 <div className="column is-centered">
-                <form>
+
+                <form onSubmit={searchData}>
                     <div className="field has-addons">
                         <div className="control is-expanded">
                             <input 
                                 type="text" 
                                 className="input" 
-                                placeholder='Find something here ...' 
+                                placeholder='Find something here ...'
+                                value={query}
+                                onChange={(e)=> setQuery(e.target.value)}
                             />
                             
                         </div>
@@ -75,9 +87,10 @@ const UserList = () => {
                 <p>Total Row : {rows} Page: {rows? page + 1 : 0} of {pages}</p>
                 
                 <nav 
-                    className="pagination is-centered" 
+                    className="pagination is-centered"
                     role="navigation" 
                     aria-label="pagination"
+                    key={rows}
                 >
                     <ReactPaginate 
                         previousLabel={"< Prev"}

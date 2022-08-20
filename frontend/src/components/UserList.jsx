@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import ReactPaginate from "react-paginate";
 
 const UserList = () => {
 
@@ -25,6 +26,10 @@ const UserList = () => {
             setPages(response.data.totalPage);
             setRows(response.data.totalRows);
 
+    };
+
+    const changePage = ({selected}) => {
+        setPage(selected);
     }
 
     return (
@@ -67,7 +72,21 @@ const UserList = () => {
                         ))}
                     </tbody>
                 </table>
-
+                <p>Total Row : {rows} Page: {rows? page + 1 : 0} of {pages}</p>
+                
+                <nav 
+                    className="pagination is-centered" 
+                    role="navigation" 
+                    aria-label="pagination"
+                >
+                    <ReactPaginate 
+                        previousLabel={"< Prev"}
+                        nextLabel={"Next >"}
+                        pageCount={pages}
+                        onPageChange={changePage}
+                    />
+                </nav>
+                
                 </div>
             </div>
         </div>

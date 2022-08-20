@@ -21,14 +21,15 @@ const UserList = () => {
                 </div>
             </form>
             
-            {/* table>(theadtr>th*4)+(tbody>tr>td*4) */}
             <table className='table is-striped is-bordered is-fullwidth mt-2'>
-                <theadtr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                </theadtr>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td></td>
